@@ -6,6 +6,14 @@ class ProgressKeys {
 }
 
 class ProgressChecker {
+  ProgressChecker() {
+    // Ensure the progress file exists
+    File file = File(filePath);
+    if (!file.existsSync()) {
+      file.createSync(recursive: true);
+      file.writeAsStringSync('{}'); // Initialize with an empty JSON object
+    }
+  }
   final String filePath = 'progress/progress.json';
 
   int checkProgress(String key) {

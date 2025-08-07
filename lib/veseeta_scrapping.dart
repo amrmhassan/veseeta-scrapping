@@ -6,7 +6,7 @@ import 'package:veseeta_scrapping/progress_checker.dart';
 
 class DoctorsScrapping {
   String endPoint =
-      'https://vezeeta-mobile-gateway.vezeetaservices.com/api/Search?Page=50&BookingTypes=physical';
+      'https://vezeeta-mobile-gateway.vezeetaservices.com/api/Search';
   String filePath = 'output/doctors/data.json';
 
   IOSink? _sink;
@@ -57,10 +57,10 @@ class DoctorsScrapping {
       'regionid': 'Africa/Cairo',
       'brandkey': '7B2BAB71-008D-4469-A966-579503B3C719',
       'content-type': 'application/json',
-      'x-vzt-time': '1754520765593',
+      'x-vzt-time': '1754523085606',
       'x-vzt-token': '',
       'x-vzt-authorization':
-          '9ccbf16b78ceb2201bb166c1a26568d56bb52dbf86cb4bfc68334a706943015f',
+          '1ed5556f84a9eb0834915a92d3019b26b590dbf2df13d985a4baba2ff4c13781',
       'x-vzt-component': 'PTKEY',
     };
 
@@ -71,7 +71,6 @@ class DoctorsScrapping {
         queryParameters: queryParams,
         options: Options(headers: headers, responseType: ResponseType.json),
       );
-
       var data = response.data as Map<String, dynamic>;
       return data;
     } on DioException catch (e) {
@@ -98,4 +97,35 @@ class DoctorsScrapping {
   void _closeFile() {
     _sink?.close();
   }
+}
+
+String dioRequestToCurl(RequestOptions options) {
+  final buffer = StringBuffer();
+
+  buffer.write('curl -X ${options.method}');
+
+  // Headers
+  options.headers.forEach((key, value) {
+    buffer.write(' -H "$key: $value"');
+  });
+
+  // Data (Body)
+  if (options.data != null) {
+    var data = options.data;
+
+    // Convert Map or FormData to JSON
+    if (data is Map) {
+      data = jsonEncode(data);
+    } else if (data is FormData) {
+      final fields = data.fields.map((e) => '"${e.key}=${e.value}"').join('&');
+      data = fields;
+    }
+
+    buffer.write(" --data '$data'");
+  }
+
+  // URL
+  buffer.write(' "${options.uri.toString()}"');
+
+  return buffer.toString();
 }
