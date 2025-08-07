@@ -37,7 +37,7 @@ class DoctorsScrapping {
       page++;
 
       // You can add a delay here if needed to avoid hitting the server too fast
-      await Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(Duration(seconds: 2));
     }
   }
 
@@ -58,10 +58,10 @@ class DoctorsScrapping {
       'regionid': 'Africa/Cairo',
       'brandkey': '7B2BAB71-008D-4469-A966-579503B3C719',
       'content-type': 'application/json',
-      'x-vzt-time': '1754523085606',
+      'x-vzt-time': '1754524841241',
       'x-vzt-token': '',
       'x-vzt-authorization':
-          '1ed5556f84a9eb0834915a92d3019b26b590dbf2df13d985a4baba2ff4c13781',
+          '9b81cc13cebc588efe7f29ab9bbb97e83c8f9e28ba3e36709e2ad651be11e31e',
       'x-vzt-component': 'PTKEY',
     };
 
