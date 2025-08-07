@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:veseeta_scrapping/constants/endpoints.dart';
+import 'package:veseeta_scrapping/constants/links.dart';
 import 'package:veseeta_scrapping/progress_checker.dart';
+import 'package:veseeta_scrapping/vezeeta_auth.dart';
 
 class DoctorsScrapping {
   String endPoint =
@@ -63,6 +66,10 @@ class DoctorsScrapping {
       'x-vzt-authorization':
           'd3a6ccb60c656bb7a6b07899def51de430d17ca0fb7d33b91f912c2c0ea5cfb2',
     };
+    var auth = VezeetaAuth.generateAuthHeaders(
+      url: Links.baseUrl + Endpoints.searchDoctors,
+    );
+    headers.addAll(auth);
 
     final queryParams = {
       // 'Speciality': 'spec00000005EG',
