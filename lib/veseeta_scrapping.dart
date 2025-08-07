@@ -37,6 +37,7 @@ class DoctorsScrapping {
       page++;
 
       // You can add a delay here if needed to avoid hitting the server too fast
+      await Future.delayed(Duration(seconds: 2));
     }
   }
 
