@@ -58,14 +58,17 @@ class DoctorsScrapping {
       'regionid': 'Africa/Cairo',
       'brandkey': '7B2BAB71-008D-4469-A966-579503B3C719',
       'content-type': 'application/json',
-      'x-vzt-time': '1754524841241',
+      'x-vzt-time': '1754529550537',
       'x-vzt-token': '',
       'x-vzt-authorization':
-          '9b81cc13cebc588efe7f29ab9bbb97e83c8f9e28ba3e36709e2ad651be11e31e',
-      'x-vzt-component': 'PTKEY',
+          'd3a6ccb60c656bb7a6b07899def51de430d17ca0fb7d33b91f912c2c0ea5cfb2',
     };
 
-    final queryParams = {'Page': pageNumber, 'BookingTypes': 'physical'};
+    final queryParams = {
+      // 'Speciality': 'spec00000005EG',
+      'Page': pageNumber,
+      'BookingTypes': 'physical',
+    };
     try {
       final response = await dio.get(
         endPoint,
